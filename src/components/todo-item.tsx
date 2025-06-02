@@ -1,7 +1,27 @@
+import type { Dispatch, SetStateAction } from "react";
 import type { Task } from "../types/task";
 
-function TodoItem({ task }: { task: Task }) {
-  const handleOnChange = () => {};
+function TodoItem({
+  index,
+  task,
+  tasks,
+  setTasks,
+}: {
+  index: number;
+  task: Task;
+  tasks: Task[];
+  setTasks: Dispatch<SetStateAction<Task[]>>;
+}) {
+  const handleOnChange = () => {
+    const updatedTasks = tasks.map((task, i) => {
+      if (i === index) {
+        return { ...task, isComplete: !task.isComplete };
+      } else {
+        return task;
+      }
+    });
+    setTasks(updatedTasks);
+  };
 
   return (
     <li className='todo-item'>

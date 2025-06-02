@@ -1,6 +1,8 @@
 import { useState } from "react";
-import type { Task, TodoListStatus } from "../types/task";
+import type { Task } from "../types/task";
 import TodoItem from "./todo-item";
+
+type TodoListStatus = "empty" | "typing" | "success";
 
 const initialState = [
   { text: "Do the washing up", isComplete: false },
@@ -34,7 +36,7 @@ export default function TodoList() {
     <div className='todo-list'>
       <ul>
         {tasks.map((task, index) => (
-          <TodoItem key={index} task={task} />
+          <TodoItem key={index} {...{ task, index, tasks, setTasks }} />
         ))}
       </ul>
       <div className='todo-input'>

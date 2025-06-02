@@ -1,6 +1,7 @@
 import type { Dispatch, SetStateAction } from "react";
 import type { Task } from "../types";
 import cn from "classnames";
+import { sortByComplete } from "../lib/helpers/taskSorter";
 
 function TodoItem({
   index,
@@ -21,7 +22,7 @@ function TodoItem({
         return task;
       }
     });
-    setTasks(updatedTasks);
+    setTasks(sortByComplete(updatedTasks));
   };
 
   return (

@@ -14,7 +14,7 @@ function TodoInput({
 }) {
   const [newTask, setNewTask] = useState<Task>({ text: "", isComplete: false });
 
-  const handleNewTask = () => {
+  const handleAddTask = () => {
     setTasks([...tasks, newTask]);
     setNewTask({ ...newTask, text: "" });
     setStatus("success");
@@ -36,7 +36,7 @@ function TodoInput({
       <button
         type='button'
         disabled={status !== "typing"}
-        onClick={handleNewTask}
+        onClick={handleAddTask}
       >
         Add Task
       </button>

@@ -39,6 +39,10 @@
   padding: 1rem;
 }
 
+.todo-item button {
+  margin: 0 0 0 1rem;
+}
+
 .completed {
   background-color: rgba(159, 176, 118, 0.55);
 }

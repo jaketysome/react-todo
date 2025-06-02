@@ -25,6 +25,11 @@ function TodoItem({
     setTasks(sortByComplete(updatedTasks));
   };
 
+  const handleRemoveTask = () => {
+    const updatedTasks = tasks.filter((_, i) => i !== index);
+    setTasks(updatedTasks);
+  };
+
   return (
     <li className={cn("todo-item", task.isComplete && "completed")}>
       <span className='task-text'>{task.text}</span>
@@ -35,6 +40,9 @@ function TodoItem({
         checked={task.isComplete}
         onChange={handleOnChange}
       />
+      <button type='button' onClick={handleRemoveTask}>
+        x
+      </button>
     </li>
   );
 }

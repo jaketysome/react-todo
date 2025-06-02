@@ -1,5 +1,6 @@
 import type { Dispatch, SetStateAction } from "react";
 import type { Task } from "../types";
+import cn from "classnames";
 
 function TodoItem({
   index,
@@ -24,7 +25,7 @@ function TodoItem({
   };
 
   return (
-    <li className='todo-item'>
+    <li className={cn("todo-item", task.isComplete && "completed")}>
       <span className='task-text'>{task.text}</span>
       <input
         id='task-complete'

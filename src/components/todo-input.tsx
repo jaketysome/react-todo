@@ -1,26 +1,32 @@
-import { useState } from "react";
 import type { Task } from "../types/task";
+import type { TodoListStatus } from "../types/todo-list";
 
-function TodoInput({ setTasks }: { setTasks: (newTask: Task) => void }) {
-  const [newTask, setNewTask] = useState("");
-
-  const handleSubmitTask = () => {
-    setTasks({ text: newTask, isComplete: false });
-  };
-
+function TodoInput({
+  status,
+  newTask,
+  handleInputChange,
+  handleNewTask,
+}: {
+  status: TodoListStatus;
+  newTask: Task;
+  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleNewTask: () => void;
+}) {
   return (
-    <form onSubmit={handleSubmitTask}>
+    <div className='todo-input'>
       <input
-        id='todo-input'
-        className='todo-input'
-        value={newTask}
-        onChange={(e) => {
-          setNewTask(e.target.value);
-        }}
+        value={newTask.text}
+        onChange={(e) => handleInputChange(e)}
         placeholder='Write your task here...'
-      ></input>
-      <button type='submit'>Add Task</button>
-    </form>
+      />
+      <button
+        type='button'
+        disabled={status !== "typing"}
+        onClick={handleNewTask}
+      >
+        Add Task
+      </button>
+    </div>
   );
 }
 

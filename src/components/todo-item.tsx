@@ -1,5 +1,5 @@
 import type { Dispatch, SetStateAction } from "react";
-import type { Task } from "../types/task";
+import type { Task } from "../types";
 
 function TodoItem({
   index,

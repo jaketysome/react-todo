@@ -1,5 +1,4 @@
-import type { Task } from "../types/task";
-import type { TodoListStatus } from "../types/todo-list";
+import type { Task, TodoListStatus } from "../types";
 
 function TodoInput({
   status,

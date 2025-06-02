@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { Task } from "../types/task";
+import type { Task, TodoListStatus } from "../types/task";
 import TodoItem from "./todo-item";
 
 const initialState = [
@@ -14,12 +14,20 @@ const initialState = [
 ];
 
 export default function TodoList() {
+  const [status, setStatus] = useState<TodoListStatus>("empty");
   const [newTask, setNewTask] = useState<Task>({ text: "", isComplete: false });
   const [tasks, setTasks] = useState<Task[]>(initialState);
 
   const handleNewTask = () => {
     setTasks([...tasks, newTask]);
     setNewTask({ ...newTask, text: "" });
+    setStatus("success");
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setStatus("typing");
+    setNewTask({ ...newTask, text: e.target.value });
   };
 
   return (
@@ -32,12 +40,14 @@ export default function TodoList() {
       <div className='todo-input'>
         <input
           value={newTask.text}
-          onChange={(e) => {
-            setNewTask({ text: e.target.value, isComplete: false });
-          }}
+          onChange={(e) => handleInputChange(e)}
           placeholder='Write your task here...'
         />
-        <button type='button' onClick={handleNewTask}>
+        <button
+          type='button'
+          disabled={status === "empty"}
+          onClick={handleNewTask}
+        >
           Add Task
         </button>
       </div>

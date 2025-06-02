@@ -1,7 +1,6 @@
 import type { Task } from "../types/task";
 
 function TodoItem({ task }: { task: Task }) {
-  console.log("task rendered: ", task.text);
   const handleOnChange = () => {};
 
   return (

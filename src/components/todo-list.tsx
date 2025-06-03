@@ -12,6 +12,7 @@ const initialState = [
     text: "Defeat Jordan Peterson in hand to hand combat",
     isComplete: false,
   },
+  { text: "Buy groceries", isComplete: false },
 ];
 
 export default function TodoList() {
